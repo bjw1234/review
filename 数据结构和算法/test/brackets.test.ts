@@ -2,7 +2,7 @@
  * 使用栈判断括号是否正确匹配
  * [([{}])]、()[{}][]
  */
-import Stack from './LinkedListStack'
+import Stack from '../LinkedListStack'
 
 const validate = function (str: string): boolean {
   if (!str) throw new Error('params string is not null')
