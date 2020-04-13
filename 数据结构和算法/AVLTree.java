@@ -28,7 +28,7 @@ public class AVLTree<T extends Comparable<T>> {
   }
 
   /**
-   * 右旋（RR型）
+   * 左旋（RR型）
    * 
    * @param node
    * @return
