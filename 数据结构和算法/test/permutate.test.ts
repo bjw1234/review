@@ -21,4 +21,70 @@ const permutate = function (str) {
   return result
 }
 
-console.log(permutate('abcd'))
+// console.log(permutate('abcd'))
+
+
+const arr = [1, 2, 5, 9, 9, 9, 9, 10]
+
+function searchRight(arr, target) {
+  if (!arr || arr.length === 0) return -1
+  let left = 0
+  let right = arr.length - 1
+
+  while (left < right) {
+    let middle = Math.floor((left + right + 1) / 2)
+    if (arr[middle] <= target) { // 右
+      left = middle
+    } else { // 左
+      right = middle - 1
+    }
+  }
+
+  if (arr[left] === target)
+    return left
+  return -1
+}
+
+function searchRight2(arr, target) {
+  if (!arr || !arr.length) return -1
+  let left = 0
+  let right = arr.length - 1
+
+  while (left <= right) {
+    let middle = Math.floor((left + right) / 2)
+    if (arr[middle] <= target) { // 右
+      left = middle + 1
+    } else { // 左
+      right = middle - 1
+    }
+  }
+
+  if (right === arr.length - 1 && arr[right] !== target)
+    return -1
+
+  return right
+}
+
+console.log(searchRight2(arr, 11)) // -1
+console.log(searchRight2(arr, 10)) // 7
+console.log(searchRight2(arr, 9)) // 6
+
+
+
+
+function search(arr, target) {
+  if (!arr || !arr.length) return -1;
+  let left = 0
+  let right = arr.length - 1
+
+  while (left <= right) {
+    let middle = Math.floor((left + right) / 2)
+    if (arr[middle] === target) return middle
+    if (arr[middle] < target) { // 右
+      left = middle + 1
+    } else { // 左
+      right = middle - 1
+    }
+  }
+  return -1
+}
