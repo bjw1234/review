@@ -86,6 +86,7 @@ public class AVLTree<T extends Comparable<T>> {
   private AVLNode<T> _insert(AVLNode<T> node, T data) {
     if (node == null) { // 创建新节点
       node = new AVLNode<T>(data);
+      return node;
     }
 
     // 往左添加
@@ -106,8 +107,7 @@ public class AVLTree<T extends Comparable<T>> {
       }
 
       // 往右添加
-    } else if (data.compareTo(node.data) > 0) {
-
+    } else {
       node.right = _insert(node.right, data);
 
       // 判断是否失衡
