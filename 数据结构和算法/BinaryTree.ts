@@ -14,11 +14,14 @@ export class Node {
 
 /**
  * 排序二叉树
+ * 如果左子树不为空，则左子树上每个节点的值均小于根节点的值
+ * 如果右子树不为空，则右子树上每个节点的值均大于根节点的值
  */
 export class BinaryTree {
 
   private root: Node
 
+  // 插入节点
   intert(node: Node) {
     if (!this.root) {
       this.root = node
@@ -43,6 +46,7 @@ export class BinaryTree {
     }
   }
 
+  // 前序遍历
   prevOrderTranverse(cb: Function) {
     this._prevOrderTranverse(this.root, cb)
   }
@@ -55,6 +59,7 @@ export class BinaryTree {
     }
   }
 
+  // 中序遍历
   inOrderTranverse(cb: Function) {
     this._inOrderTranverse(this.root, cb)
   }
@@ -67,6 +72,7 @@ export class BinaryTree {
     }
   }
 
+  // 后续遍历
   postOrderTranverse(cb: Function) {
     this._postOrderTranverse(this.root, cb)
   }
@@ -79,6 +85,7 @@ export class BinaryTree {
     }
   }
 
+  // 层级遍历
   levelOrderTranverse(cb) {
     const queue = []
     queue.push(this.root)

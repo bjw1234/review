@@ -7,10 +7,8 @@ interface IStack<T> {
 
 export default class Stack<T> implements IStack<T> {
   private data: T[]
-  private capacity: number
 
   constructor(capacity = 10) {
-    this.capacity = capacity
     this.data = new Array<T>()
   }
 
@@ -37,11 +35,11 @@ export default class Stack<T> implements IStack<T> {
   }
 }
 
-// const stack = new Stack<string>()
-// stack.push('hello0')
-// stack.push('hello1')
-// stack.push('hello2')
-// console.log(stack.getSize())
-// console.log(stack.isEmpty())
-// console.log(stack.pop())
-// console.log(stack.getSize())
+const stack = new Stack<string>()
+stack.push('hello0')
+stack.push('hello1')
+stack.push('hello2')
+console.log(stack.getSize())
+console.log(stack.isEmpty())
+console.log(stack.pop())
+console.log(stack.getSize())

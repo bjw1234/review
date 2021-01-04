@@ -8,6 +8,7 @@ interface Queue<E> {
   isEmpty(): boolean
 }
 
+// 优先队列 - 可以使用`堆`这种数据结构去实现
 export default class PriorityQueue<E> implements Queue<E> {
   private heap: BinaryHeap<E>
 
@@ -39,7 +40,7 @@ export default class PriorityQueue<E> implements Queue<E> {
 }
 
 // 测试优先队列
-type person = {
+interface person {
   name: string,
   age: number,
 }
