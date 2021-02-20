@@ -46,7 +46,7 @@ export class BinaryTree {
     }
   }
 
-  // 前序遍历
+  // 前序遍历 - 复制整个二叉树
   prevOrderTranverse(cb: Function) {
     this._prevOrderTranverse(this.root, cb)
   }
@@ -59,7 +59,7 @@ export class BinaryTree {
     }
   }
 
-  // 中序遍历
+  // 中序遍历 - 从小到大顺序输出
   inOrderTranverse(cb: Function) {
     this._inOrderTranverse(this.root, cb)
   }
@@ -72,7 +72,7 @@ export class BinaryTree {
     }
   }
 
-  // 后续遍历
+  // 后续遍历 - 文件系统的遍历
   postOrderTranverse(cb: Function) {
     this._postOrderTranverse(this.root, cb)
   }
@@ -221,7 +221,7 @@ arr.forEach(i => {
 binaryTree.remove(3)
 
 binaryTree.levelOrderTranverse((i) => {
-  console.log(i)
+  console.log("levelOrder", i)
 })
 
 console.log(binaryTree.isContain(5))

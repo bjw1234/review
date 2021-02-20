@@ -3,6 +3,20 @@ export interface Comparable<T> {
 }
 
 /**
+ * 如果根节点存储在数组下标为0的位置
+ * 
+ *            5(0)
+ *         /        \
+ *      6(1)        9(2)
+ *      /   \      /    \
+ *    8(3)  2(4)  7(5)  1(6)
+ *
+ * const leftChildIdx = idx => idx * 2 + 1;
+ * const rightChildIdx = idx => idx * 2 + 2;
+ * const parentIdex = idx => Math.floor((idx - 1) / 2);
+ */
+
+/**
  * 二叉堆是完全二叉树，完全二叉树可以用数组的方式实现
  * 故而完全二叉树的实现就可以绕过二叉树的定义（不使用left,right这样的定义）
  * 这样做的好处就是可以根据索引判断父子关系

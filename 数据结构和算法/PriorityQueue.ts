@@ -49,7 +49,7 @@ const queue = new PriorityQueue((a: person, b: person) => a.age <= b.age);
 
 queue.enqueue({ name: 'tom', age: 22 })
 queue.enqueue({ name: 'lilei', age: 10 })
-queue.enqueue({ name: 'tom', age: 22 })
+queue.enqueue({ name: 'tom', age: 42 })
 
 console.log('出队的数据 ==>')
 console.log(queue.dequeue())

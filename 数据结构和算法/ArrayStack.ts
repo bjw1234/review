@@ -8,7 +8,7 @@ interface IStack<T> {
 export default class Stack<T> implements IStack<T> {
   private data: T[]
 
-  constructor(capacity = 10) {
+  constructor() {
     this.data = new Array<T>()
   }
 
@@ -33,13 +33,32 @@ export default class Stack<T> implements IStack<T> {
   getSize() {
     return this.data.length
   }
+
+  forEach(func) {
+    if (typeof func !== 'function') {
+      throw new TypeError('params must is a function.')
+    }
+    for (let i = 0; i < this.getSize(); i++) {
+      const value = this.data[i]
+      func(value, i, this.data)
+    }
+  }
+
+  toString() {
+    return JSON.stringify(this.data);
+  }
 }
 
 const stack = new Stack<string>()
+
 stack.push('hello0')
 stack.push('hello1')
 stack.push('hello2')
-console.log(stack.getSize())
-console.log(stack.isEmpty())
-console.log(stack.pop())
-console.log(stack.getSize())
+stack.forEach((cur, index, data) => {
+  console.log(cur, index, data)
+})
+console.log("toString:", stack.toString());
+console.log("getSize:", stack.getSize())
+console.log("isEmpty", stack.isEmpty())
+console.log("pop", stack.pop())
+console.log("getSize", stack.getSize())

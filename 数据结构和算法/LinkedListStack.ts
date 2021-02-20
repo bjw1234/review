@@ -10,6 +10,8 @@ interface IStack<T> {
   getSize(): number
 }
 
+type func<T> = (value: T) => void
+
 class Node<T> {
   val: T
   next: Node<T>
@@ -31,9 +33,8 @@ export default class LinkedListStack<T> implements IStack<T> {
 
   push(val: T) {
     const node = new Node<T>(val, this.root)
-    node.next = this.root
     this.root = node
-    this.length = this.length + 1
+    this.length += 1
   }
 
   pop() {
@@ -41,7 +42,7 @@ export default class LinkedListStack<T> implements IStack<T> {
       return undefined
     const val = this.root.val
     this.root = this.root.next
-    this.length = this.length - 1
+    this.length -= 1
     return val
   }
 
@@ -52,13 +53,30 @@ export default class LinkedListStack<T> implements IStack<T> {
   getSize() {
     return this.length
   }
+
+  forEach(func: func<T>) {
+    if (typeof func !== 'function') {
+      throw new TypeError('params must is a function.')
+    }
+    let current = this.root
+    for (let i = 0; i < this.getSize(); i++) {
+      func(current.val)
+      current = current.next
+    }
+  }
 }
 
 const stack = new LinkedListStack<string>()
 stack.push('hello0')
 stack.push('hello1')
 stack.push('hello2')
-console.log(stack.getSize())
-console.log(stack.pop())
-console.log(stack.getSize())
-console.log(stack.pop())
+stack.forEach((value) => {
+  console.log("forEach:", value);
+})
+console.log("getSize:", stack.getSize())
+console.log("isEmpty", stack.isEmpty())
+console.log("pop", stack.pop())
+console.log("pop", stack.pop())
+console.log("pop", stack.pop())
+console.log("pop", stack.pop())
+console.log("getSize", stack.getSize())
