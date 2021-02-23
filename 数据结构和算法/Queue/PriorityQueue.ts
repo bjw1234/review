@@ -1,4 +1,4 @@
-import BinaryHeap, { Comparable } from "./BinaryHeap";
+import BinaryHeap, { Comparable } from "../Heap/BinaryHeap";
 
 interface Queue<E> {
   enqueue(E)

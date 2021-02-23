@@ -14,12 +14,6 @@ const test = (func: Function) => {
   console.log(`${arr.length} data : ${func.name} time is: ${e - s} ms`)
 }
 
-// 给function定义名称
-interface Function {
-  readonly name: string
-}
-
-
 // 堆排序
 // 思想：构造最大堆，循环取堆顶元素
 function heapSort(arr: number[]): number[] {
