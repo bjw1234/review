@@ -1,7 +1,4 @@
-class TrieEle {
-  isWord: boolean
-  next: Map<String, TrieEle>
-
+class TrieNode {
   constructor(isWord = false) {
     this.isWord = isWord
     this.next = new Map()
@@ -9,24 +6,21 @@ class TrieEle {
 }
 
 class TrieSet {
-  private root: TrieEle
-  private size: number
-
   constructor() {
     this.size = 0
-    this.root = new TrieEle()
+    this.root = new TrieNode()
   }
 
   getSize() {
     return this.size
   }
 
-  add(word: string) {
+  add(word) {
     let current = this.root
     for (let i = 0; i < word.length; i++) {
       const c = word.charAt(i)
       if (!current.next.has(c)) {
-        current.next.set(c, new TrieEle())
+        current.next.set(c, new TrieNode())
       }
       current = current.next.get(c)
     }
@@ -37,7 +31,7 @@ class TrieSet {
     }
   }
 
-  contains(word: string) {
+  contains(word) {
     let current = this.root
     for (let i = 0; i < word.length; i++) {
       const c = word.charAt(i)
@@ -64,11 +58,11 @@ class TrieSet {
   }
 
   // 搜索正则表达式是否匹配 [a..e] = [abce]
-  searchReg(word: string) {
+  searchReg(word) {
     return this.match(this.root, word, 0)
   }
 
-  private match(node: TrieEle, word: string, index: number) {
+  match(node, word, index) {
     if (index === word.length) return node.isWord
 
     const c = word[index]
