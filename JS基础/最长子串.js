@@ -43,16 +43,17 @@ lengthOfLongestSubstring2('abcacde') // 4
 lengthOfLongestSubstring2('ababc') // 3
 console.log('\n')
 
+// i 当前下标 flag 最长子串的开始位置 max 最长的长度
 const lengthOfLongestSubstring3 = (s) => {
-  let max = 0, flag = 0 // 无重复子串开始下标 的下一个位置
+  let max = 0, j = 0 // 无重复子串开始下标 的下一个位置
   const map = new Map()
   const len = s.length
   for (let i = 0; i < len; i++) {
     if (map.has(s[i])) {
-      console.log(map.get(s[i]) + 1, flag)
-      flag = Math.max(map.get(s[i]) + 1, flag)
+      // 如果有重复元素，要以较大的那个下标作为起始位置
+      j = Math.max(map.get(s[i]) + 1, j)
     }
-    max = Math.max(max, i - flag + 1)
+    max = Math.max(max, i - j + 1)
     map.set(s[i], i)
   }
 

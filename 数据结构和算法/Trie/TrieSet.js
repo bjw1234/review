@@ -1,3 +1,4 @@
+// Trie前缀树，对于操作字符串有着很高的性能
 class TrieNode {
   constructor(isWord = false) {
     this.isWord = isWord
