@@ -32,6 +32,10 @@ export default class BinaryHeap<T> {
     this.compare = compare
   }
 
+  getData(): T[] {
+    return this.data
+  }
+
   getSize(): number {
     return this.data.length
   }

@@ -37,6 +37,10 @@ export default class PriorityQueue<E> implements Queue<E> {
   isEmpty() {
     return this.heap.isEmpty()
   }
+
+  getData() {
+    return this.heap.getData();
+  }
 }
 
 // 测试优先队列
