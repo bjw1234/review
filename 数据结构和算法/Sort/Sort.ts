@@ -1,9 +1,9 @@
 // 测试用例
 // const arr = [3, 5, 3, 0, 8, 6, 1, 5, 8, 6, 2, 4, 9, 4, 7, 0, 1, 8, 9, 7, 3, 1, 2, 5, 9, 7, 4, 0, 2, 6]
 
-const test = (func: Function) => {
+const test = (func) => {
   const arr = []
-  const dataLen = 10000000
+  const dataLen = 1000000
   for (let i = 0; i < dataLen; i++) {
     arr.push(Math.random() * 1000)
   }
@@ -170,11 +170,6 @@ function quickSort(arr: number[]): number[] {
 
 function quickSort2(arr: number[], left = 0, right = arr.length - 1) {
   let partitionIdx;
-  const sweap = (arr, i, j) => {
-    const temp = arr[i]
-    arr[i] = arr[j]
-    arr[j] = temp
-  }
   const partition = function (a, l, r) {
     // 把基准值设置为第一个元素
     // 从第一个元素后面那个元素开始
@@ -279,6 +274,21 @@ function countSort(arr: number[]): number[] {
   return ret
 }
 
+function quickSortTest(data) {
+  const arr = data.slice()
+  if (arr.length === 0) return arr
+  const pValue = arr.shift()
+  const left = [], right = []
+  arr.forEach(v => {
+    if (v < pValue) {
+      left.push(v)
+    } else {
+      right.push(v)
+    }
+  })
+  return [...quickSortTest(left), pValue, ...quickSortTest(right)]
+}
+
 // const ret = countSort(arr)
 // console.log(ret)
 
@@ -300,6 +310,7 @@ function countSort(arr: number[]): number[] {
 test(quickSort2)
 test(shellSort)
 test(shellSort2)
+test(quickSortTest)
 // test(countSort)
 // 桶排，基数排序
 
