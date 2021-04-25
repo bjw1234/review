@@ -4,11 +4,11 @@
  * @param {*} C 
  * @param {*} D 
  *
- *  数组长度一致 
+ *  数组长度一致
  * 给定四个包含整数的数组列表 A , B , C , D ,计算有多少个元组 (i, j, k, l) ，使得 A[i] + B[j] + C[k] + D[l] = 0。
  */
 // 为了在1s左右算出结果，至少得设计一个N2级别的算法。也就是可能遍历A、B两个数组。其余两个通过map实现。
-const fourSumCount = function (A, B, C, D) {``
+const fourSumCount = function (A, B, C, D) {
   let result = 0;
   const map = new Map();
   for (let i = 0; i < C.length; i++) {
