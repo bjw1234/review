@@ -7,7 +7,22 @@
  * @param  {...any} params 参数 
  */
 function New(cons, ...params) {
+  if (typeof cons !== 'function') {
+    throw Error('xxxx')
+  }
   const obj = Object.create(cons.prototype);
-  cons.apply(obj, params);
-  return obj;
+  const ret = cons.apply(obj, params);
+  const isObject = typeof ret === 'object' && ret !== null;
+  const isFunction = typeof ret === 'function';
+  return isObject || isFunction ? ret : obj;
 }
+
+const Parent = function (name) {
+  this.name = name
+  return null
+}
+
+const a = new Parent('x')
+console.log('a', a)
+
+console.log(New(Parent, 'bjw'))
