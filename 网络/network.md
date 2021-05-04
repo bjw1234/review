@@ -26,9 +26,39 @@ TCP/IP模型是互联网的基础，它是一系列网络协议的总称。
 6.提供全双工通信
 
 三次握手：
-SYN
-ACK-SYN
-ACK
+SYN     ->
+ACK-SYN <-
+ACK     ->
+
+四次挥手：
+FIN ->
+ACK <-
+FIN <-
+ACK ->
+
+拆包和粘包：
+拆？稳定性，效率，缓冲区。 ---TCP段（TCP Segment）
+粘？防止多次发送占用资源，多个数据合并为一个TCP段发送。
+
+TCP Segment
+Source Port  Destination Port
+Squence Number（发送字节数） 
+Acknowledgment Number（接收字节数）
+FIN/SYN/PSH/URG  -- 标志位
+...
+
+滑动窗口+流速控制
+是TCP协议控制可靠性的核心。
+
+
+TCP/UDP 区别
+1.目的性差异
+2.可靠性
+3.连接和和无连接
+4.传输速度
+5.场景差异
+UDP（视频、流媒体、游戏、DNSLookup域名解析）
+TCP（SSH，FTP、邮件）
 
 ## HTTP
 对于同一个域，大多数浏览器会同时建立6个持久连接。
