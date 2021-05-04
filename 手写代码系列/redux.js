@@ -18,6 +18,15 @@ function createThunkMiddleWare(args) {
   }
 }
 
+function createPromiseMiddleWare({ dispatch }) {
+  return next => action => {
+    if (action instanceof Promise) {
+      return action.then((v) => dispatch(v))
+    }
+    return next(action)
+  }
+}
+
 const thunk = createThunkMiddleWare();
 
 function applyMiddleWares(...middlewares) {
@@ -110,13 +119,24 @@ const reducer = (state, action) => {
   return state;
 }
 
-const enhancer = applyMiddleWares(thunk);
+// const enhancer = applyMiddleWares(thunk);
+const enhancer = applyMiddleWares(createPromiseMiddleWare);
 
 const myStore = createStore(reducer, { count: 0 }, enhancer);
 
-myStore.dispatch((dispatch) => {
-  console.log('something');
-  dispatch({ type: 'add' });
-});
+// myStore.dispatch((dispatch) => {
+//   console.log('something');
+//   dispatch({ type: 'add' });
+// });
+
+myStore.dispatch(new Promise(r => {
+  setTimeout(() => {
+    r({ type: 'add' })
+  }, 1000);
+}))
+
+myStore.subscribe((state) => {
+  console.log('subscribe', state)
+})
 
 console.log(myStore.getState()); // {count: 1}
