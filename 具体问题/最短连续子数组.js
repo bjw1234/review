@@ -22,7 +22,7 @@ function minSubArrLen2(nums, s) {
 }
 
 
-const arrs = [1, 1, 1, 1, 1, 1, 1, 1];
+const arrs = [2, 5, 7, 1, 7, 9];
 console.log('len2', minSubArrLen2(arrs, 9));
 
 
