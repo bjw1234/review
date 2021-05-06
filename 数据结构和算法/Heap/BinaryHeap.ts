@@ -76,6 +76,14 @@ export default class BinaryHeap<T> {
     return ret
   }
 
+  siftUpTest(i) {
+    // true
+    while (i > 0 && this.compare(this.data[i], this.data[this.parentIdx(i)])) {
+      this.sweap(i, this.parentIdx(i))
+      i = this.parentIdx(i)
+    }
+  }
+
   // 第i个元素上浮 和 父元素比较
   siftUp(i): void {
     // 当前元素 大于父元素
@@ -116,6 +124,10 @@ export default class BinaryHeap<T> {
     for (let i = this.parentIdx(this.data.length - 1); i >= 0; i--) {
       this.siftDown(i)
     }
+
+    // for (let i = 0; i < this.data.length; i++) {
+    //   this.siftUp(i)
+    // }
   }
 
   sweap(i: number, j: number) {

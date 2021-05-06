@@ -216,3 +216,19 @@
 
 // console.log(maxSubLength(arr))
 
+// function strRange(str) {
+//   if (str.length === 0) return []
+//   if (str.length === 1) return [str]
+//   const result = []
+//   const restItems = strRange(str.slice(1))
+//   for (let i = 0; i < restItems.length; i++) {
+//     for (let j = 0; j < restItems[i].length + 1; j++) {
+//       const temp = restItems[i].slice(0, j) + str[0] + restItems[i].slice(j)
+//       result.push(temp)
+//     }
+//   }
+//   return result
+// }
+
+// const arr = ['a', 'b', 'c', 'd']
+// console.log(strRange(arr))
