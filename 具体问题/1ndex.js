@@ -232,3 +232,74 @@
 
 // const arr = ['a', 'b', 'c', 'd']
 // console.log(strRange(arr))
+
+// class MyHeap {
+//   constructor(arr, compare) {
+//     // TODO 校验参数
+//     this.arr = arr
+//     this.compare = compare
+//   }
+
+//   leftChildIdx(i) {
+//     return (i * 2) + 1
+//   }
+
+//   parentIdx(i) {
+//     return Math.floor((i - 1) / 2)
+//   }
+
+//   // 取出堆顶元素
+//   extraTop() {
+//     const value = this.arr[0]
+//     this.arr.shift()
+//     this.siftDown(0)
+//     return value
+//   }
+
+//   // 构建堆，从前往后，元素上浮
+//   heapify() {
+//     for (let i = 0; i < this.arr.length; i++) {
+//       this.siftUp(i)
+//     }
+//   }
+
+//   siftDown(i) {
+//     // 最大堆，小元素下沉，当前和子元素较大的比较，如果小于较大的，则下沉
+//     while (this.leftChildIdx(i) < this.arr.length) { // 下沉次数
+//       const lcIdx = this.leftChildIdx(i)
+//       const rcIdx = lcIdx + 1
+//       let maxValIdx
+//       if (rcIdx < this.arr.length && this.compare(this.arr[rcIdx], this.arr[lcIdx])) {
+//         maxValIdx = rcIdx
+//       } else {
+//         maxValIdx = lcIdx
+//       }
+//       // 判断是否需要下沉
+//       if (this.arr[i] < this.arr[maxValIdx]) {
+//         this.sweap(i, maxValIdx)
+//         i = maxValIdx
+//       } else {
+//         break
+//       }
+//     }
+//   }
+
+//   sweap(i, j) {
+//     const temp = this.arr[i]
+//     this.arr[i] = this.arr[j]
+//     this.arr[j] = temp
+//   }
+
+//   siftUp(i) {
+//     // 如果构建最大堆，大元素上浮，compare = false 左边值小于右边值
+//     while (i > 0 && this.compare(this.arr[this.parentIdx(i)], this.arr[i])) {
+//       this.sweap(i, this.parentIdx(i))
+//       i = this.parentIdx(i)
+//     }
+//   }
+// }
+
+// const heap = new MyHeap([5, 1, 4, 7, 9, 0], (a, b) => a <= b)
+// heap.heapify()
+// console.log(heap.arr)
+
