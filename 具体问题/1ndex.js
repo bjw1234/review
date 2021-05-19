@@ -303,3 +303,13 @@
 // heap.heapify()
 // console.log(heap.arr)
 
+const arr = ["flower", "flow", "flight"]
+
+
+
+
+
+
+function longestCommonPrefix() {
+
+}

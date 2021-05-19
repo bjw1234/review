@@ -30,8 +30,8 @@ function pkey(obj: P2, key: personKey) {
   return obj[key]
 }
 // 测试
-const obj: P2 = { name: 'bjw', age: 25, children: [] }
-pkey(obj, 'name') // bjw
+const objs: P2 = { name: 'bjw', age: 25, children: [] }
+pkey(objs, 'name') // bjw
 
 // 项目实战
 interface API {
@@ -75,7 +75,7 @@ type MyPick<T, K extends keyof T> = {
 }
 // Omit, Exclude 
 
-const test: MyPick<Person, 'name'> = { name: 'xx' }
+const tests: MyPick<Person, 'name'> = { name: 'xx' }
 
 
 
@@ -87,8 +87,8 @@ type DeepReadonly<T> = {
   readonly [P in keyof T]: DeepReadonly<T[P]>
 }
 
-const a = { foo: { bar: 4 } }
-const b = a as DeepReadonly<typeof a>
+const av = { foo: { bar: 4 } }
+const bv = av as DeepReadonly<typeof av>
 // Cannot assign to 'bar' because it is a read-only property.
 // b.foo.bar = 3
 
