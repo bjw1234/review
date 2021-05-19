@@ -1,4 +1,5 @@
 /**
+ * 考虑两种情况，奇数个或偶数个，从中间往两边找
  * @param {string} s
  * @return {string}
  */

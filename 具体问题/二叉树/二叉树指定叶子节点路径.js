@@ -13,13 +13,13 @@ function path(root, target) {
   let result = []
 
   // 判断当前元素是否存在于以node为根节点的子树中
-  const inorder = (node) => {
+  const postOrder = (node) => {
     if (!node) return false
-    const leftRet = inorder(node.left)
+    const leftRet = postOrder(node.left)
     if (leftRet) {
       result.unshift(node.val)
     }
-    const rightRet = inorder(node.right)
+    const rightRet = postOrder(node.right)
     if (rightRet) {
       result.unshift(node.val)
     }
@@ -29,7 +29,7 @@ function path(root, target) {
     }
   }
 
-  inorder(root)
+  postOrder(root)
 
   return result
 }
