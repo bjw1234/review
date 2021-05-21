@@ -8,6 +8,7 @@ function distance(root, a, b) {
   return x
 }
 
+// 获取节点的层级
 function getDistance(root, val) {
   let level = 0
   const queue = []
@@ -46,3 +47,17 @@ let a = {
 }
 
 console.log(distance(a, 3, 2))
+
+
+// 公共父节点
+function commonFaNode(root, a, b) {
+  if (!root || root.val === a || root.val === b) return root
+
+  const leftNode = commonFaNode(root.left, a, b)
+  const rightNode = commonFaNode(root.right, a, b)
+
+  if (leftNode === null && rightNode === null) return null
+  if (leftNode === null) return rightNode
+  if (rightNode === null) return leftNode
+  return root
+}

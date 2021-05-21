@@ -303,13 +303,114 @@
 // heap.heapify()
 // console.log(heap.arr)
 
-const arr = ["flower", "flow", "flight"]
+// 二叉树到指定叶子节点的路径
+let a = {
+  val: 1,
+  left: {
+    val: 2,
+    left: { val: 4 },
+    right: { val: 7, right: { val: 8 } },
+  },
+  right: {
+    val: 3
+  }
+};
 
 
+// console.log(path(a, 8)) // [1, 3]
 
 
+// 深度优先遍历，自上而下递归，自下而上回溯
+// function path(root, val) {
+//   const result = []
+
+//   // 判断当前节点是否存在于该树中
+//   const postOrder = root => {
+//     if (!root) return false
+//     const leftRet = postOrder(root.left)
+//     const rightRet = postOrder(root.right)
+
+//     if (leftRet || rightRet) {
+//       result.unshift(root.val)
+//     }
+
+//     // 判断
+//     if (root.val === val) {
+//       result.unshift(root.val)
+//       return true
+//     }
+
+//     return leftRet || rightRet
+//   }
+
+//   postOrder(root)
+//   return result
+// }
+
+// 二叉树的中序遍历 - 循环
+// function inOrder(root) {
+//   let current = root
+//   const temp = []
+//   const ret = []
+//   while (temp.length > 0 || current) {
+//     while (current) {
+//       temp.push(current)
+//       current = current.left
+//     }
+//     current = temp.pop()
+//     ret.push(current.val)
+//     current = current.right
+//   }
+
+//   return ret
+// }
+
+// console.log(inOrder(a))
 
 
-function longestCommonPrefix() {
+// 二叉树右视图
+// 当前层级和元素个数得相等
+function rightView(root) {
+  const result = []
+  // 每层至少添加一个元素，右子树优先遍历
+  const traverse = (node, level) => {
+    if (!node) return
 
+    if (level === result.length) {
+      result.push(node.val)
+    }
+    const curLevel = level + 1
+    traverse(node.right, curLevel)
+    traverse(node.left, curLevel)
+  }
+
+  traverse(root, 0) // 第0层
+  return result
 }
+
+console.log(rightView(a))
+
+
+function rightView2(root) {
+  const result = []
+  const temp = []
+  let level = -1
+  temp.push(root)
+  while (temp.length) {
+    let len = temp.length
+    level += 1
+    for (let i = 0; i < len; i++) {
+      const node = temp.shift()
+      if (level === result.length) {
+        result.push(node.val)
+      }
+      if (node.right) temp.push(node.right)
+      if (node.left) temp.push(node.left)
+    }
+
+  }
+
+  return result
+}
+
+console.log('func2', rightView2(a))

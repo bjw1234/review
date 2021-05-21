@@ -38,7 +38,6 @@ console.log('len2', minSubArrLen2(arrs, 9));
 
 
 
-
 function minSubArrLen(target, nums) {
   let l = 0, r = -1; // nums[l ,r]为我们的滑动窗口 -1，不想让窗口中有值
   let sum = 0;
