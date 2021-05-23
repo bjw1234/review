@@ -370,47 +370,136 @@ let a = {
 
 // 二叉树右视图
 // 当前层级和元素个数得相等
-function rightView(root) {
-  const result = []
-  // 每层至少添加一个元素，右子树优先遍历
-  const traverse = (node, level) => {
-    if (!node) return
+// function rightView(root) {
+//   const result = []
+//   // 每层至少添加一个元素，右子树优先遍历
+//   const traverse = (node, level) => {
+//     if (!node) return
 
-    if (level === result.length) {
-      result.push(node.val)
+//     if (level === result.length) {
+//       result.push(node.val)
+//     }
+//     const curLevel = level + 1
+//     traverse(node.right, curLevel)
+//     traverse(node.left, curLevel)
+//   }
+
+//   traverse(root, 0) // 第0层
+//   return result
+// }
+
+// console.log(rightView(a))
+
+
+// function rightView2(root) {
+//   const result = []
+//   const temp = []
+//   let level = -1
+//   temp.push(root)
+//   while (temp.length) {
+//     let len = temp.length
+//     level += 1
+//     for (let i = 0; i < len; i++) {
+//       const node = temp.shift()
+//       if (level === result.length) {
+//         result.push(node.val)
+//       }
+//       if (node.right) temp.push(node.right)
+//       if (node.left) temp.push(node.left)
+//     }
+
+//   }
+
+//   return result
+// }
+
+// console.log('func2', rightView2(a))
+
+// 获取二叉树节点所在的层级
+// function getLevel(root, val) {
+//   let level = 0
+//   const temp = []
+//   temp.push(root)
+//   while (temp.length) {
+//     level += 1
+//     const len = temp.length
+//     for (let i = 0; i < len; i++) {
+//       const cur = temp.shift()
+//       if (cur.val === val) {
+//         return level
+//       }
+//       if (cur.left) temp.push(cur.left)
+//       if (cur.right) temp.push(cur.right)
+//     }
+//   }
+//   return level
+// }
+
+// function getLevel(root, val) {
+//   const postOrder = (node, curLevel) => {
+//     // level 判断 val
+//     if (!node) return -1
+//     const leftLevel = postOrder(node.left, curLevel + 1)
+//     if (leftLevel !== -1) { // 找到了元素对应的层级
+//       return leftLevel
+//     }
+//     const rightLevel = postOrder(node.right, curLevel + 1)
+//     if (rightLevel !== -1) { // 找到了元素对应的层级
+//       return rightLevel
+//     }
+//     if (node.val === val) {
+//       return curLevel
+//     }
+//     return -1
+//   }
+
+//   return postOrder(root, 1)
+// }
+
+// console.log(getLevel(a, 7)) // 4
+
+class UnionFinds {
+  constructor(n) {
+    this.head = [] // 节点对应头结点
+    this.level = [] // 头节点 树的高度
+    for (let i = 0; i < n; i++) {
+      this.head[i] = i
+      this.level[i] = 1
     }
-    const curLevel = level + 1
-    traverse(node.right, curLevel)
-    traverse(node.left, curLevel)
   }
 
-  traverse(root, 0) // 第0层
-  return result
-}
+  // 合并两棵树
+  union(p, q) {
+    const proot = this.find(p)
+    const qroot = this.find(q)
 
-console.log(rightView(a))
-
-
-function rightView2(root) {
-  const result = []
-  const temp = []
-  let level = -1
-  temp.push(root)
-  while (temp.length) {
-    let len = temp.length
-    level += 1
-    for (let i = 0; i < len; i++) {
-      const node = temp.shift()
-      if (level === result.length) {
-        result.push(node.val)
-      }
-      if (node.right) temp.push(node.right)
-      if (node.left) temp.push(node.left)
+    if (proot === qroot) return
+    if (this.level[proot] < this.level[qroot]) {
+      this.head[proot] = qroot
+    } else if (this.level[proot] > this.level[qroot]) {
+      this.head[qroot] = proot
+    } else {
+      this.head[proot] = qroot
+      this.level[qroot] += 1
     }
-
   }
 
-  return result
+  // 找到某个节点的头结点
+  find(x) {
+    if (this.head[x] === x) return x
+    // 路径压缩
+    this.head[x] = this.find(this.head[x])
+    return this.head[x]
+  }
+
+  isConnected(p, q) {
+    return this.head[p] === this.head[q]
+  }
 }
 
-console.log('func2', rightView2(a))
+const uf = new UnionFinds(6)
+uf.union(2, 3)
+uf.union(1, 3)
+console.log(uf.isConnected(1, 2))
+console.log(uf.isConnected(3, 2))
+

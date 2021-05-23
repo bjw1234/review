@@ -20,3 +20,13 @@ const reverseList = function (head) {
   }
   return cur
 };
+
+
+const reverse = (head) => {
+  if (!head || !head.next) return head
+  // newHead是最后一个节点
+  const newHead = reverse(head.next)
+  head.next.next = head
+  head.next = null
+  return newHead
+}

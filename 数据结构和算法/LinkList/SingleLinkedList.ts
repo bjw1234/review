@@ -106,6 +106,20 @@ export default class SingleLinkedList<T> {
     return this.length === 0
   }
 
+  // 链表反转
+  reverse() {
+    const subRverse = (head: Node<T>): Node<T> => {
+      if (!head || !head.next) return head
+      // newHead是最后一个节点
+      const newHead = subRverse(head.next)
+      head.next.next = head
+      head.next = null
+      return newHead
+    }
+
+    this.root = subRverse(this.root)
+  }
+
   toString() {
     const temp = []
     for (let p = this.root; p !== null; p = p.next) {
@@ -117,21 +131,25 @@ export default class SingleLinkedList<T> {
 
 
 const list = new SingleLinkedList<number>()
-const arr = [4, 4]
-arr.forEach(i => {
-  list.append(i)
-})
+// const arr = [4, 4]
+// arr.forEach(i => {
+//   list.append(i)
+// })
 
-console.log(list.toString(), list.getSize())
+// console.log(list.toString(), list.getSize())
 // console.log(list.isContains(4))
 // console.log(list.isContains(1))
 // console.log(list.isContains(8))
 list.insert(0, 100)
-list.insert(3, 200)
-list.insert(6, 300)
+list.insert(1, 200)
+list.insert(2, 300)
 // list.insert(10, 4)
 // console.log(list.toString())
-list.remove(4)
+// list.remove(4)
+// console.log(list.toString(), list.getSize())
+// list.append(4)
 console.log(list.toString(), list.getSize())
-list.append(4)
+
+// 链表反转
+list.reverse()
 console.log(list.toString(), list.getSize())
