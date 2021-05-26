@@ -27,3 +27,45 @@ const levelOrder = function (root) {
 
   return result
 };
+
+
+// 层级遍历 - S型遍历
+function levelOrderS(root) {
+  const result = []
+  const queue = []
+  let level = 0 // 层级
+  queue.push(root)
+  while (queue.length > 0) {
+    level += 1 // 记录当前层级，奇数行逆序，偶数行正序
+    const len = queue.length
+    const levelElement = []
+    for (let i = 0; i < len; i++) {
+      const ele = queue.shift()
+      if (level % 2 === 0) { // 偶数行
+        levelElement.push(ele.val)
+      } else { // 奇数行
+        levelElement.unshift(ele.val)
+      }
+      if (ele.left) queue.push(ele.left)
+      if (ele.right) queue.push(ele.right)
+    }
+    result.push(...levelElement)
+  }
+
+  return result.join('')
+}
+
+// test
+const root = {
+  val: 'A',
+  left: { val: 'B', left: { val: 'D' }, right: { val: 'E' } },
+  right: { val: 'C', left: { val: 'F' }, right: { val: 'G' } }
+}
+
+//    A
+//   B C
+//  DE FG
+
+// ABCGFED
+
+console.log(levelOrderS(root))

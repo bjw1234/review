@@ -458,48 +458,60 @@ let a = {
 
 // console.log(getLevel(a, 7)) // 4
 
-class UnionFinds {
-  constructor(n) {
-    this.head = [] // 节点对应头结点
-    this.level = [] // 头节点 树的高度
-    for (let i = 0; i < n; i++) {
-      this.head[i] = i
-      this.level[i] = 1
-    }
-  }
+// class UnionFinds {
+//   constructor(n) {
+//     this.head = [] // 节点对应头结点
+//     this.level = [] // 头节点 树的高度
+//     for (let i = 0; i < n; i++) {
+//       this.head[i] = i
+//       this.level[i] = 1
+//     }
+//   }
 
-  // 合并两棵树
-  union(p, q) {
-    const proot = this.find(p)
-    const qroot = this.find(q)
+//   // 合并两棵树
+//   union(p, q) {
+//     const proot = this.find(p)
+//     const qroot = this.find(q)
 
-    if (proot === qroot) return
-    if (this.level[proot] < this.level[qroot]) {
-      this.head[proot] = qroot
-    } else if (this.level[proot] > this.level[qroot]) {
-      this.head[qroot] = proot
-    } else {
-      this.head[proot] = qroot
-      this.level[qroot] += 1
-    }
-  }
+//     if (proot === qroot) return
+//     if (this.level[proot] < this.level[qroot]) {
+//       this.head[proot] = qroot
+//     } else if (this.level[proot] > this.level[qroot]) {
+//       this.head[qroot] = proot
+//     } else {
+//       this.head[proot] = qroot
+//       this.level[qroot] += 1
+//     }
+//   }
 
-  // 找到某个节点的头结点
-  find(x) {
-    if (this.head[x] === x) return x
-    // 路径压缩
-    this.head[x] = this.find(this.head[x])
-    return this.head[x]
-  }
+//   // 找到某个节点的头结点
+//   find(x) {
+//     if (this.head[x] === x) return x
+//     // 路径压缩
+//     this.head[x] = this.find(this.head[x])
+//     return this.head[x]
+//   }
 
-  isConnected(p, q) {
-    return this.head[p] === this.head[q]
-  }
-}
+//   isConnected(p, q) {
+//     return this.head[p] === this.head[q]
+//   }
+// }
 
-const uf = new UnionFinds(6)
-uf.union(2, 3)
-uf.union(1, 3)
-console.log(uf.isConnected(1, 2))
-console.log(uf.isConnected(3, 2))
+// const uf = new UnionFinds(6)
+// uf.union(2, 3)
+// uf.union(1, 3)
+// console.log(uf.isConnected(1, 2))
+// console.log(uf.isConnected(3, 2))
 
+// function sum(a, b) {
+//   if (b === 0) return a
+//   if (a === 0) return b
+//   const anum = a ^ b
+//   const bnum = a & b << 1
+//   return sum(anum, bnum)
+// }
+
+// console.log(sum(3, 44))
+
+
+// type MyOmit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>

@@ -4,7 +4,7 @@ const arr = [4, 1, 2, 8, 5, 7, 9, 0]
 function reverse(arr, n) {
   for (let i = 0; i < arr.length; i += n) {
     // [i, i+n-1] 区间内元素逆序
-    subReverse(arr, i, i + n - 1)
+    subReverse(arr, i, i + n - 1) // [l, r]
   }
   return arr
 }

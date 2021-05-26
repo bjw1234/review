@@ -14,7 +14,6 @@ type params = MyParameters<typeof getSomething>
 
 
 
-
 /**
  * keyof 获取所有类型的键值，返回一个联合类型
  */
@@ -73,11 +72,22 @@ type MyRequired<T> = {
 type MyPick<T, K extends keyof T> = {
   [P in K]: T[P]
 }
-// Omit, Exclude 
-
 const tests: MyPick<Person, 'name'> = { name: 'xx' }
 
+// Exclude
+type MyExclude<T, U> = T extends U ? never : T
+// 去除掉 'age' 属性
+type tests2 = Exclude<'name' | 'age', 'age'>
 
+// Omit
+// 忽略 T 类型中的 K 属性
+// MyExclude<keyof T, K> 排除 T 中的 K 属性，拿到剩余属性
+// MyPick<T, 剩余属性>，提取剩余的属性
+type MyOmit<T, K extends keyof T> = MyPick<T, MyExclude<keyof T, K>>
+// 忽略 age 属性
+type tests3 = MyOmit<Person, 'age'>
+
+type Omits<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 
 
 /**

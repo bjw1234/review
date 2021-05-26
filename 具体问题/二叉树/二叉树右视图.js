@@ -21,6 +21,22 @@ const rightSideView = function (root) {
   return res
 };
 
+// 再次熟悉
+function myRightSideView(root) {
+  const res = []
+  const tranverse = (node, level) => {
+    if (!node) return
+    if (res.length === level) {
+      res.push(node.val)
+    }
+    level += 1
+    tranverse(node.left, level)
+    traverse(node.right, level)
+  }
+  tranverse(root, 0)
+  return res
+}
+
 const rightSideView2 = function (root) {
   if (!root) return []
   const res = []
