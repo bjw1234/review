@@ -335,8 +335,10 @@ axios的源码实现（拦截器、`cancelToken`机制）
 **字节一面（多媒体）**
 
 除了`cookie`还有哪些有跨域的限制。（localStorage...）
-
-....
+es相关新特性
+webSocket的握手过程
+http缓存，强缓存、协商缓存
+....其他基础问题....
 
 手写：
 
